@@ -1,0 +1,30 @@
+﻿@model List<EntityFramework_App.Models.Product>
+
+@{
+    ViewBag.Title = "CgDetails";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2>CgDetails</h2>
+
+<table class="table">
+
+
+    <tr>
+        <th>Category ID</th>
+        <th>Product Name</th>
+        <th>Price</th>
+
+    </tr>
+    @foreach (var item in Model)
+    { 
+        <tr>
+            <td>@item.CategoryID</td>
+            <td>@item.ProductName</td>
+            <td>@item.Price.Value.ToString("C")</td>
+        </tr>
+    }
+</table>
+
+<a href="/categories/index">Back to Category</a>
+

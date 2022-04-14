@@ -1,0 +1,83 @@
+﻿@model EntityFramework_App.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2>Details</h2>
+
+<table class="table">
+    <tr>
+        <th>Product ID</th>
+        <td>@Model.ProductID</td>
+    </tr>
+
+    <tr>
+        <th>Product Name</th>
+        <td>@Model.ProductName</td>
+    </tr>
+
+    <tr>
+        <th>Price</th>
+        <td>
+            @if (Model.Price.HasValue)
+            {
+                <span>@Model.Price.Value.ToString("C")</span>
+            }
+        </td>
+        
+    </tr>
+
+    <tr>
+        <th>DateOfPurchase</th>
+        <td>
+            @if (Model.DateOfPurchase.HasValue)
+            {
+                <span>@Model.DateOfPurchase.Value.ToString("dd/MM/yyyy")</span>
+            }
+        </td>
+    </tr>
+
+    @*<tr>
+            <th>Brand</th>
+            <td>@Model.Brand</td>
+        </tr>
+    *@
+<tr>
+    <th>Brand </th>
+    <td>
+        @if (Model.Brand != null)
+        {
+            <span>@Model.Brand.BrandNeame</span>
+        }
+    </td>
+
+</tr>
+
+    @*<tr>
+            <th>Category</th>
+            <td>@Model.Category</td>
+        </tr>
+    *@
+    <tr>
+        <th>Category </th>
+        <td>
+            @if (Model.Category != null)
+            {
+                <span>@Model.Category.CategoryName</span>
+            }
+        </td>
+    </tr>
+
+    <tr>
+        <th>Status</th>
+        <td>@Model.AvailabilityStatus</td>
+    </tr>
+
+</table>
+
+<a href="/products/index">Back to Product</a>
+
+
+

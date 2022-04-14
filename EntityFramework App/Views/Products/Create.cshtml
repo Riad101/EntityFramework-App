@@ -1,0 +1,109 @@
+﻿
+  @model EntityFramework_App.Models.Product
+  
+        
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2>Create Product</h2>
+@using (Html.BeginForm("Create", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{ 
+    <div class="form-row">
+        <div class="form-group col-md-6">
+          
+            @Html.LabelFor(p => p.ProductName)
+            @Html.TextBoxFor(p => p.ProductName, new { placeholder = "Product Name", @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.ProductName)
+            
+        </div>
+
+        <div class="form-group col-md-6">
+            
+            @*@<label for="Price">Price</label>
+            <input type="text" class="form-control" id="Price" name="Price" placeholder="Price" />
+            *@
+            @Html.LabelFor(p=> p.Price)
+            @Html.TextBoxFor(p=> p.Price, new {placeholder = "Price", @class="form-control"})
+            @Html.ValidationMessageFor(m => m.Price)
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+           
+            @Html.LabelFor(p=> p.DateOfPurchase)
+         
+            @Html.TextBoxFor(p=> p.DateOfPurchase, new { placeholder = "Date of Purchase", @class = "form-control datepicker" })
+            @Html.ValidationMessageFor(m => m.DateOfPurchase)
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="AvailabilityStatus">Availability Status</label>
+            <select class="form-control" id="AvailabilityStatus" name="AvailabilityStatus">
+                <option value=""> Please Select</option>
+                <option value="InStock"> In Stock</option>
+                <option value="OutOfStock"> Out Of Stock</option>
+
+            </select>
+
+            @Html.ValidationMessageFor(m => m.AvailabilityStatus)
+        </div>
+    </div>
+
+    <div class="form-row">
+        
+        <div class="form-group col-md-6">
+
+            @*<label for="CategoryID">Category ID </label>
+                @<select class="form-control" id="CategoryID" name="CategoryID">
+                 <option value="">Please Select</option>
+                 @foreach (var cat in ViewBag.Categories)
+                 {
+          s           <option value="@cat.CategoryID">@cat.CategoryName</option>
+                 }
+                </select>
+            *@
+
+            @Html.LabelFor(temp => temp.CategoryID)
+            @Html.DropDownListFor(temp => temp.CategoryID, new SelectList(ViewBag.Categories, "CategoryID", "CategoryName"), "Please Select", new { @class = "form-control" })
+            @Html.ValidationMessageFor(temp => temp.CategoryID)
+
+        </div>
+
+        <div class="form-group col-md-6">
+            @*
+                <label for="BrandID">BrandID</label>
+                <select class="form-control" id="BrandID" name="BrandID">
+                    <option value="">Please select</option>
+                    @foreach (var br in ViewBag.Brands)
+                    {
+                        <option value="@br.BrandID">@br.BrandNeame</option>
+                    }
+                </select>
+            *@
+            @Html.LabelFor(p=>p.BrandID)
+            @Html.DropDownListFor(p=> p.BrandID, new SelectList(ViewBag.Brands, "BrandID", "BrandNeame"), "Please Select", new { @class = "form-control"})
+            @Html.ValidationMessageFor(m => m.BrandID)
+        </div>
+           </div>
+
+           <div class="form-group">
+               <label for="image">Image</label>
+               <input type="file" class="form-control-file" id="image" name="Photo" />
+               @Html.ValidationMessageFor(m => m.Photo)
+           </div>
+
+           <div class="form-group">
+               <div class="form-check">
+                   <input class="form-check-input" type="checkbox" id="Active" name="Active" value="true" />
+                   <label class="form-check-label" for="Active"> Active</label>
+
+               </div>
+
+           </div>
+           <button type="submit" class="btn btn-success"> Create </button>
+           <a class="btn btn-danger" href="/products/index"> Cancel</a>
+        }
+
